@@ -39,7 +39,7 @@
                sh """
                 echo "Here I wrote shell script"
                 echo " $Greeting"
-                sleep 10
+                #sleep 10
                """
             }
             
