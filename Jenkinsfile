@@ -4,7 +4,7 @@
             label 'AGENT-1'    
         }
     }
-
+    // build
     stages {
         stage('Build') {
             steps {
@@ -20,6 +20,18 @@
             steps {
                 echo 'Deploying....'
             }
+        }
+    }
+    // post build
+    post { 
+        always { 
+            echo 'I will always say Hello again!'
+        }
+        failure { 
+            echo 'This runs when pipeline is failed, usually to send some alerst'
+        }
+        sucess { 
+            echo 'I will say Hello when pipeline is sucess'
         }
     }
 }
