@@ -7,6 +7,9 @@
     environment { 
         Greeting = 'Hello Jenkins'
     }
+    options {
+             timeout(time: 1, unit: 'SECONDS') 
+         }
     // build
     stages {
         stage('Build') {
@@ -26,6 +29,7 @@
                 echo " $Greeting"
                """
             }
+            
         }
     }
     // post build
