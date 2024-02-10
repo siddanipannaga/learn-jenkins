@@ -1,16 +1,16 @@
-    pipeline {
+pipeline {
     agent {
         node {
-            label 'AGENT-1'    
+            label 'AGENT-1'
         }
     }
     environment { 
-        Greeting = 'Hello Jenkins'
+        GREETING = 'Hello Jenkins'
     }
     options {
-             timeout(time: 1, unit: 'HOURS') 
-             disableConcurrentBuilds()
-         }
+        timeout(time: 1, unit: 'HOURS')
+        disableConcurrentBuilds()
+    }
     parameters {
         string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
 
@@ -26,7 +26,7 @@
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'   
+                echo 'Building..'
             }
         }
         stage('Test') {
@@ -36,13 +36,12 @@
         }
         stage('Deploy') {
             steps {
-               sh """
-                echo "Here I wrote shell script"
-                echo " $Greeting"
-                #sleep 10
-               """
+                sh """
+                    echo  "Here I wrote shell script"
+                    echo "$GREETING"
+                    #sleep 10
+                """
             }
-            
         }
         stage('check params'){
             steps{
@@ -59,16 +58,17 @@
                 """
             }
         }
+    }
     // post build
     post { 
         always { 
             echo 'I will always say Hello again!'
         }
         failure { 
-            echo 'This runs when pipeline is failed, usually to send some alerst'
+            echo 'this runs when pipeline is failed, used generally to send some alerts'
         }
-        success { 
-            echo 'I will say Hello when pipeline is sucess'
+        success{
+            echo 'I will say Hello when pipeline is success'
         }
     }
 }
