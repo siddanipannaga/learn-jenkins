@@ -56,10 +56,9 @@
                     echo "Choice: ${params.CHOICE}"
 
                     echo "Password: ${params.PASSWORD}"
-                    """
+                """
             }
         }
-
     // post build
     post { 
         always { 
